@@ -4,6 +4,13 @@
 
 ### Hardware
 
+### Setup APT
+
+```
+sudo apt-get update
+sudo apt-get install -y apt-transport-https ca-certificates curl
+```
+
 ### CRI-O
 
 ```
@@ -34,13 +41,14 @@ sudo apt-mark hold cri-o cri-o-runc
 #### Add Repository
 
 ```
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
 
 #### Install
 
 ```
+sudo apt update
 sudo apt-get install kubeadm kubelet kubectl
 sudo apt-mark hold kubeadm kubelet kubectl
 ```
